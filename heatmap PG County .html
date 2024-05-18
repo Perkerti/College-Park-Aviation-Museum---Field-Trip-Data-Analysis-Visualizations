@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Heatmap Example</title>
+    <!-- REMEMBER TO REMOVE API KEY WHEN GIVEN TO FUTURE GROUPS DELETE AIzaSyAJ09w83xzEr1DoWBHMzeqAKgyeO9aqB2M FROM LINE BELOW-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ09w83xzEr1DoWBHMzeqAKgyeO9aqB2M&libraries=visualization"></script>
+    <script>
+      function initialize() {
+        var mapOptions = {
+          zoom: 12,
+          center: new google.maps.LatLng(38.97647,-76.921931),
+          mapTypeId: google.maps.MapTypeId.MAP
+        };
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+
+        var heatmapData = [
+            {location: new google.maps.LatLng(38.97647,-76.921931), label: 'JTCC'},
+            {location: new google.maps.LatLng(39.103672,-76.867228), label: 'Kiddie Academy'},
+            {location: new google.maps.LatLng(38.973789,-76.771535), label: 'Celebree of Bowie'},
+            {location: new google.maps.LatLng(39.08046,-76.920253), label: 'Watkins Tennis Buuble Camp'},
+            new google.maps.LatLng(38.97647,-76.921931),
+            {location: new google.maps.LatLng(39.101766,-76.847336), label: 'Nias Early Learning Center'},
+            {location: new google.maps.LatLng(38.771853,-76.791649), label: 'St Pauls Christian Childrens Center'},
+            {location: new google.maps.LatLng(39.000477,-76.877407), label: 'Greenbelt Recreation'},
+            new google.maps.LatLng(39.08046,-76.920253),
+            {location: new google.maps.LatLng(38.771542,-76.784809), label: 'Family Reunion'},
+            new google.maps.LatLng(38.97647,-76.921931),
+            {location: new google.maps.LatLng(38.84693,-76.867493), label: 'New Life Taekwondo Academy'},
+            new google.maps.LatLng(38.97647,-76.921931),
+            {location: new google.maps.LatLng(38.956863,-76.945897), label: 'Hyattsville Hills Summer Camp'},
+            {location: new google.maps.LatLng(38.982263,-76.815622), label: 'Pee Wee Piano'},
+            new google.maps.LatLng(38.97647,-76.921931),
+            new google.maps.LatLng(39.08046,-76.920253),
+            new google.maps.LatLng(38.982263,-76.815622),
+            new google.maps.LatLng(38.97647,-76.921931),
+            {location: new google.maps.LatLng(38.80414,-76.933382), label: 'St. Stephen Baptist Church Camp Unplugged'},
+            new google.maps.LatLng(39.08046,-76.920253),
+            {location: new google.maps.LatLng(39.121433,-76.846428), label: 'World Championship Martial Arts Center'},
+            new google.maps.LatLng(38.97647,-76.921931),
+            {location: new google.maps.LatLng(38.792753,-76.930771), label: 'RIMS Homeshool Group'},
+            {location: new google.maps.LatLng(38.997846,-76.750042), label: 'Holy Trinity Episcopal Day School'},
+            {location:  new google.maps.LatLng(38.976658,-76.866759), label: 'Christines Family Daycare'},
+            new google.maps.LatLng(38.792753,-76.930771),
+            {location: new google.maps.LatLng(38.852813,-76.927304), label: 'Boy Scouts of America/Suitland Elementary School'},
+            {location: new google.maps.LatLng(38.83401,-76.968357), label: 'Maya Angelou French Immersion School'},
+            new google.maps.LatLng(38.852813,-76.927304),
+            {location: new google.maps.LatLng(38.881831,-76.89028), label: 'Central High School'},
+            {location: new google.maps.LatLng(39.01134,-76.959693), label: 'Buck Lodge Middle School'},
+            {location: new google.maps.LatLng(39.116616,-76.804551), label: 'Boy Scouts of America Troop 2016'},
+            {location: new google.maps.LatLng(38.949936,-76.830927), label: 'Hands of Hope Service Inc'},
+            {location: new google.maps.LatLng(39.043116,-76.918075), label: 'Evangel Christian Child Care Center'},
+            new google.maps.LatLng(39.043116,-76.918075),
+            new google.maps.LatLng(38.97647,-76.921931),
+            {location: new google.maps.LatLng(38.970101,-76.925864), label: 'Sunny Days Early Learning Center'},
+            new google.maps.LatLng(39.043116,-76.918075),
+            new google.maps.LatLng(38.771853,-76.791649),
+            {location: new google.maps.LatLng(38.954996,-76.811005), label: 'Winners Chapel Maryland'},
+            new google.maps.LatLng(38.97647,-76.921931),
+            new google.maps.LatLng(38.771853,-76.791649),
+            {location: new google.maps.LatLng(38.904063,-76.840759), label: 'Chesapeake Life Center'},
+            new google.maps.LatLng(38.97647,-76.921931),
+            {location: new google.maps.LatLng(39.023706,-76.907583), label: 'Pars Martial Arts'},
+            new google.maps.LatLng(38.97647,-76.921931),
+            new google.maps.LatLng(38.982263,-76.815622),
+            {location: new google.maps.LatLng(38.971184,-76.987389), label: 'Shining Star Before and Aftercare'},
+            new google.maps.LatLng(38.982263,-76.815622),
+            {location: new google.maps.LatLng(38.976823,-76.861533), label: 'M&M Learning Center'},
+            new google.maps.LatLng(38.97647,-76.921931),
+            {location: new google.maps.LatLng(39.161917,-76.892855), label: 'Knowlede Beginnings'},
+            new google.maps.LatLng(38.97647,-76.921931),
+            {location: new google.maps.LatLng(38.967438,-76.939302), label: 'Orlandos Birthday Group'},
+            new google.maps.LatLng(39.121433,-76.846428),
+            new google.maps.LatLng(38.97647,-76.921931),
+            {location: new google.maps.LatLng(39.084211,-76.878411), label: 'ACIDD Maryland'},
+            {location: new google.maps.LatLng(38.969083,-76.918451), label: 'MNCPPC Development Division'},
+            {location: new google.maps.LatLng(38.939692,-76.733968), label: 'Maryland Nature Play & Learning'},
+            {location: new google.maps.LatLng(38.809564,-76.951478), label: 'Samuel Chase Elementary School'},
+            {location: new google.maps.LatLng(38.924982,-76.911591), label: 'Cheverly UMC Nursery'},
+            new google.maps.LatLng(38.83401,-76.968357),
+            new google.maps.LatLng(39.01134,-76.959693),
+            {location: new google.maps.LatLng(38.894987,-76.810663), label: 'Kettering Middle School'},
+            {location: new google.maps.LatLng(39.012341,-76.877411), label: 'Greenbelt Middle School'},
+            new google.maps.LatLng(38.881831,-76.89028),
+            {location: new google.maps.LatLng(38.943625,-76.894299), label: 'New Hope Academy'},
+            new google.maps.LatLng(38.939692,-76.733968),
+            {location: new google.maps.LatLng(38.979192,-76.861542), label: 'Lanham Christian School'},
+            {location: new google.maps.LatLng(38.99727,-76.90263), label: 'Dora Kennedy French Immersion'},
+            {location: new google.maps.LatLng(39.036794,-76.919515), label: 'St Josephs Regional Catholic School'},
+            {location: new google.maps.LatLng(39.111248,-76.936432), label: 'Burtonsville Elementary School'},
+            {location: new google.maps.LatLng(38.952179,-76.914878), label: 'Templeton Elementary School'},
+            {location: new google.maps.LatLng(39.046426,-76.887787), label: 'Vansville Elementary School'},
+            {location: new google.maps.LatLng(38.954345,-76.94243), label: 'Hyattsville Elementary School'},
+            new google.maps.LatLng(38.97647,-76.921931),
+            new google.maps.LatLng(38.97647,-76.921931),
+            {location: new google.maps.LatLng(38.978836,-76.922275), label: 'College Park Aviation Museum'},
+            {location: new google.maps.LatLng(39.03337,-76.908236), label: 'Fitness Martial Arts'},
+            {location: new google.maps.LatLng(38.961829,-76.98517), label: 'Childrens Guild School PG Campus'},
+            new google.maps.LatLng(38.976823,-76.861533),
+            {location: new google.maps.LatLng(38.948,-76.826551), label: 'Resolve Community Health'},
+            {location: new google.maps.LatLng(38.901089,-76.852786), label: 'Step by Step Therapeutic'},
+            {location: new google.maps.LatLng(38.856533,-76.934687), label: 'University for Tots Suitland Child Care'},
+            {location: new google.maps.LatLng(38.89823,-76.756872), label: 'Mother of Vision and Purpse'},
+            {location: new google.maps.LatLng(38.985995,-76.938837), label: 'UMD NROTC Aviation Club'},
+            new google.maps.LatLng(38.97647,-76.921931),
+            new google.maps.LatLng(38.97647,-76.921931),
+            {location: new google.maps.LatLng(38.973561,-76.943286), label: 'Girl Scouts Daisy Troop 23031'},
+            {location: new google.maps.LatLng(38.758792,-76.807526), label: 'Starlite Performing Arts'},
+            new google.maps.LatLng(38.97647,-76.921931),
+            new google.maps.LatLng(39.043116,-76.918075),
+            new google.maps.LatLng(38.771853,-76.791649),
+            new google.maps.LatLng(39.043116,-76.918075),
+            new google.maps.LatLng(39.043116,-76.918075),
+            {location: new google.maps.LatLng(38.780577,-76.898735), label: 'Dancing For His Glory Summer Dance Camp'},
+            new google.maps.LatLng(39.023706,-76.907583),
+            {location: new google.maps.LatLng(38.910553,-76.745308), label: 'Amazing Child Family Childcare Center'},
+            {location: new google.maps.LatLng(38.987969,-76.858628), label: 'Enchanted Way Child Development Center'},
+            {location: new google.maps.LatLng(38.881671,-76.811467), label: 'Edified Christian Childcare'},
+            {location: new google.maps.LatLng(38.928996,-76.806766), label: 'Cops Camp - MNC Park Police, Prince Georges County Division'},
+            {location: new google.maps.LatLng(39.195728,-76.855345), label: 'Columbia Organization - Little Explorers Camp'},
+            {location: new google.maps.LatLng(38.818418,-76.893894), label: 'From the Heart Christian School'},
+            {location: new google.maps.LatLng(39.102412,-76.80308), label: 'Russett KinderCare'},
+            {location: new google.maps.LatLng(38.972047,-76.81072), label: 'Shades of Blue DMV Chapter'},
+            {location: new google.maps.LatLng(38.97683,-77.012589), label: 'Takoma Park Child Development Center'},
+            new google.maps.LatLng(38.928996,-76.806766),
+            {location: new google.maps.LatLng(39.05407,-76.901775), label: 'Kidsland Daycare Center'},
+            {location: new google.maps.LatLng(38.886853,-76.796905), label: 'Watkins Nature Center'},
+            new google.maps.LatLng(38.979192,-76.861542),
+            {location: new google.maps.LatLng(38.944476,-76.951928), label: 'Gwendolyn Britt Senior Activity Center'},
+            {location: new google.maps.LatLng(38.978108,-76.743662), label: 'Bowie High School'},
+            {location: new google.maps.LatLng(38.870862,-76.778417), label: 'Shabach Christian Academy'},
+            {location: new google.maps.LatLng(39.042399,-76.937398), label: 'James Duckworth Regional Center'},
+            new google.maps.LatLng(39.042399,-76.937398),
+            new google.maps.LatLng(39.01134,-76.959693),
+            {location: new google.maps.LatLng(38.813345,-76.90227), label: 'Princeton Elementary School'},
+            new google.maps.LatLng(38.997846,-76.750042),
+            new google.maps.LatLng(39.01134,-76.959693),
+            {location: new google.maps.LatLng(38.99727,-76.90263), label: 'Dora Kennedy French Immersion'},
+            {location: new google.maps.LatLng(38.987341,-76.771861), label: 'High Bridge Elementary School'},
+            {location: new google.maps.LatLng(38.925993,-76.78924), label: 'Woodmore Elementary School'},
+            {location: new google.maps.LatLng(38.801902,-76.99088), label: 'John Hanson Montessori'},
+            {location: new google.maps.LatLng(38.989154,-76.836342), label: 'DuVal High School'},
+            {location: new google.maps.LatLng(38.987844,-76.927372), label: 'Paint Branch Elementary School'},
+            {location: new google.maps.LatLng(38.905903,-76.845158), label: 'Ebed Community Improvement, INC'},
+            {location: new google.maps.LatLng(38.944852,-76.709571), label: 'MRPA Leadership Institute '},
+
+
+
+
+
+
+
+        ];
+
+        var gradient = [
+          'rgba(0, 255, 255, 0)',
+          'rgba(0, 255, 255, 1)',
+          'rgba(0, 191, 255, 1)',
+          'rgba(0, 127, 255, 1)',
+          'rgba(0, 63, 255, 1)',
+          'rgba(0, 0, 255, 1)',
+          'rgba(0, 0, 223, 1)',
+          'rgba(0, 0, 191, 1)',
+          'rgba(0, 0, 159, 1)',
+          'rgba(0, 0, 127, 1)',
+          'rgba(63, 0, 91, 1)',
+          'rgba(127, 0, 63, 1)',
+          'rgba(191, 0, 31, 1)',
+          'rgba(255, 0, 0, 1)'
+        ];
+
+        var heatmap = new google.maps.visualization.HeatmapLayer({
+          data: heatmapData,
+          gradient: gradient,
+          radius: radius = 30
+        });
+
+        heatmap.setMap(map);
+
+        var markerIcon = {
+        url: 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png', 
+        scaledSize: new google.maps.Size(18, 28), 
+
+        };
+
+        heatmapData.forEach(function(item) {
+          var marker = new google.maps.Marker({
+            position: item.location,
+            map: map,
+            icon: markerIcon
+          });
+          
+          marker.addListener('click', function() {
+            var infowindow = new google.maps.InfoWindow({
+              content: '<div style="font-size: 18px;">' + item.label + '</div>' 
+            });
+            infowindow.open(map, marker);
+        });
+        });
+        
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas" style="height: 1000px; width: 100%;"></div>
+  </body>
+</html>
